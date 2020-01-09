@@ -1,6 +1,14 @@
->> 
+#### Glue Dev Endpoint - Delete
+```
+TODO :
 
-##### create glue client for each region and get all dev endpoints
+Schedule a lambda to trigger every 30 min for following :
+  - describe endpoints
+  - Usecase 1 - check modified time, if current endpoint is inactive for more than, 2hrs delete it
+  - Usecase 2 - check when created, check time diff, if diff is greater than 8 hrs delete and send notif
+```
+
+##### Create glue client for each region and get all dev endpoints
 #
 ```
 import boto3
@@ -56,7 +64,7 @@ ct_conn = boto3.client(service_name='cloudtrail',region_name='us-west-1')
 starttime = datetime.datetime.now() - datetime.timedelta(days=1)
 endtime = datetime.datetime.now()
 ```
-##### get the events withi given timeframe say 1 day
+##### get the events within given timeframe say 1 day
 #
 ```
 res = ct_conn.lookup_events(StartTime=starttime, EndTime=endtime, MaxResults=50)
