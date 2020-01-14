@@ -15,12 +15,15 @@ regions = ['ap-northeast-1', 'ap-northeast-2', 'ap-south-1', 'ap-southeast-1',
             'us-west-1', 'us-west-2']
 
 def lambda_handler(event, context):
+    """
+    This will get details of any Glue Dev Endpoint per availability zone
+    and get the Endpoint Alive Duration In Minutes, if any endpoint found alive for more that 2 hours
+    send notification to the subscription
+    """
     for region in regions:
-        #print(region)
         client = boto3.client('glue', region_name=region)
         endpoint_res = client.get_dev_endpoints()
         dev_endpoints = endpoint_res.get('DevEndpoints')
-        print(endpoint_res)
         if dev_endpoints:
             for dev_endpoint in dev_endpoints:
                 endpoint_name = dev_endpoint['EndpointName']
@@ -30,6 +33,7 @@ def lambda_handler(event, context):
                 now_time = datetime.datetime.now()
                 diff = now_time - created_timestamp
                 created_minutes = diff.total_seconds()/60
+                # todo - use logger in place of print
                 print('EndPoint Name : ' + endpoint_name,   'EndPoint AvailabilityZone : ' + endpoint_az,
                         'EndPointCreated : ' + str(created_timestamp),
                         'EndPointLastModifid : ' + str(lastmodified_timestamp),
@@ -41,9 +45,11 @@ def lambda_handler(event, context):
                 
 
 def publish_to_sns(sub, msg):
-    topic_arn = "arn:aws:sns:us-west-1:338612595803:GlueDevEndpointEmailTopic"
+    """
+    send email notifications to stake holders
+    """
+    topic_arn = "arn:aws:sns:us-west-1:##:GlueDevEndpointEmailTopic"
     sns = boto3.client("sns")
-    
     response = sns.publish(
         TopicArn=topic_arn,
         Message=msg,
