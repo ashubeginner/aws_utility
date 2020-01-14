@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# This will get details of any Glue Dev Endpoint per availability zone and get the Endpoint Alive Duration In Minutes
+
 import boto3
 import datetime
 import os
