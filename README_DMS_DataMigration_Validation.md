@@ -41,4 +41,5 @@ Following these strategies and testing procedures during your data migration pro
 
 #### Architecture Diagram
 
-[dms_migration_validation.png]
+![Architecture Diagram](dms_migration_validation.png)
+
