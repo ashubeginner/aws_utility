@@ -40,3 +40,5 @@ Performance or Benchmark Testing – Benchmark testing helps identify if there i
 Following these strategies and testing procedures during your data migration project will help ensure that the migration goes smoothly. Not only helping to eliminate business disruptions due to flawed execution, but also saving time over manual processes, and ensuring that the entire project maintains its timeline—thereby avoiding expensive cost overruns.
 
 #### Architecture Diagram
+
+[dms_migration_validation.png]
