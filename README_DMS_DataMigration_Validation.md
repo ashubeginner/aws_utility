@@ -43,3 +43,19 @@ Following these strategies and testing procedures during your data migration pro
 
 ![Architecture Diagram](dms_migration_validation.png)
 
+##### Loading data from SQL Server to Python pandas dataframe
+
+```
+import pandas as pd
+import pyodbc
+
+sql_conn = pyodbc.connect('DRIVER={ODBC Driver 13 for SQL Server};
+                            SERVER=SQLSERVER2017;
+                            DATABASE=Adventureworks;
+                            Trusted_Connection=yes') 
+query = "SELECT [BusinessEntityID],[FirstName],[LastName],
+                 [PostalCode],[City] FROM [Sales].[vSalesPerson]"
+df = pd.read_sql(query, sql_conn)
+
+df.head(3)
+```
