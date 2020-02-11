@@ -1,4 +1,9 @@
-####AWS Cost Explorer
+#### AWS Cost Explorer
+
+#### Architecture Diagram
+
+![Architecture Diagram](glue_auditor.png)
+
 ```
 TODO :
 
