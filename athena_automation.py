@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-#
 # Query AWS Athena using SQL
 # Requirements:
 # > pip3 install boto3 botocore retrying
@@ -22,7 +21,6 @@ s3     = boto3.resource('s3')
 
 def poll_status(_id):
     result = athena.get_query_execution( QueryExecutionId = _id )
-    import pdb;pdb.set_trace()
     state  = result['QueryExecution']['Status']['State']
     if state != 'FAILED':
         return result
