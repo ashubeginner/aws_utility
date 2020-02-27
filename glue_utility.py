@@ -62,7 +62,9 @@ def run_glue_job(job_name):
 	if job_run_res:
 		run_id = job_run_res.get('JobRunId')
 		status = get_job_status(job_name, run_id)
-	print("Job Status - " + status)
+		print("Job Status - " + status)
+	else:
+		pass
 	
 
 def get_job_status(job_name, run_id):
@@ -79,10 +81,10 @@ def update_glue_job():
 	"""
 	try:
 		response = client.update_job(JobName='TestGlueCreate',
-									JobUpdate={'Role': 'Glue-Service-Role',
-									'Command' :{'Name': 'glue_script',
-												'ScriptLocation': 's3://dev-driscolls-datalake-config/jobs/lci/initial/job_lci_bin_grower_exception_raw_to_transform.py',
-												'PythonVersion': '3'}, 
-									'DefaultArguments': {'env': 'UAT'}})
+						JobUpdate={'Role': 'Glue-Service-Role',
+						'Command' :{'Name': 'glue_script',
+									'ScriptLocation': 's3://dev-driscolls-datalake-config/jobs/lci/initial/job_lci_bin_grower_exception_raw_to_transform.py',
+									'PythonVersion': '3'}, 
+						'DefaultArguments': {'env': 'UAT'}})
 	except Exception as e:
 		raise e
