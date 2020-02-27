@@ -7,10 +7,9 @@ script_location = 's3://dev-driscolls-datalake-config/jobs/lci/initial/job_lci_b
 command_name = 'glue_script'
 region='us-west-1'
 def_args = {
-         'env': 'DEV',
-		 'key1': '121',
-		 'key2': '122'
-     },
+	'env': 'DEV',
+	'key1': '121',
+	'key2': '122'}
 max_capacity = 2
 
 #this is to track who is the owner/user/updater of the job being created 
@@ -19,8 +18,7 @@ tags = {'CreatedBy': 'Ashutosh',
 		'UsedBy': 'Ashutosh',
 		'UsedByEmail': 'ashu.beginner@gmail.com',
 		'UpdatedBy': 'Ashutosh',
-		'UpdatedByEmail': 'ashu.beginner@gmail.com',
-		}
+		'UpdatedByEmail': 'ashu.beginner@gmail.com'}
 
 # global glue client
 client = boto3.client('glue', region_name=region)
@@ -32,23 +30,17 @@ def create_glue_job():
 	"""
 	try:
 		response = client.create_job(
-			 Name=name,
-			 Description='this is to test glue job create',
-			 Role='Glue-Service-Role',
-			 ExecutionProperty={
-				 'MaxConcurrentRuns': 123
-			 },
-			 Command={
-				 'Name': command_name,
-				 'ScriptLocation': script_location,
-				 'PythonVersion': '3'
-			 },
-			 DefaultArguments=def_args,
-			 MaxCapacity=max_capacity
-			 Tags=tags,
-			 GlueVersion='3.0',
-
-	 )
+							Name=name,
+							Description='this is to test glue job create',
+							Role='Glue-Service-Role',
+							ExecutionProperty={'MaxConcurrentRuns': 123},
+							Command={'Name': command_name,
+									'ScriptLocation': script_location,
+									'PythonVersion': '3'},
+							DefaultArguments=def_args,
+							MaxCapacity=max_capacity
+							Tags=tags,
+							GlueVersion='3.0')
 	except Exception as e:
 		raise e
 
@@ -77,7 +69,7 @@ def get_job_status(job_name, run_id):
 
 def update_glue_job():
 	"""
-	this is to update any existing glue job
+	this is to update an existing glue job
 	"""
 	try:
 		response = client.update_job(JobName='TestGlueCreate',
