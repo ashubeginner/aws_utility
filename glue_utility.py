@@ -77,7 +77,7 @@ def get_job_status(job_name, run_id):
 
 def update_glue_job():
 	"""
-	this is to update an existing glue job
+	this is to update any existing glue job
 	"""
 	try:
 		response = client.update_job(JobName='TestGlueCreate',
