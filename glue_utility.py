@@ -62,7 +62,7 @@ def run_glue_job(job_name):
 	if job_run_res:
 		run_id = job_run_res.get('JobRunId')
 		status = get_job_status(job_name, run_id)
-    print("Job Status - " + status)
+	print("Job Status - " + status)
 	
 
 def get_job_status(job_name, run_id):
@@ -74,7 +74,7 @@ def get_job_status(job_name, run_id):
 
 
 def update_glue_job():
-    """
+	"""
 	this is to update an existing glue job
 	"""
 	try:
